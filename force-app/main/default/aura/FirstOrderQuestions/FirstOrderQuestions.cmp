@@ -1,0 +1,21 @@
+<aura:component controller="FirstOrderQuestions" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:attribute name="Opportunity" type="Opportunity" default="{}"/>
+    <aura:attribute name="recordId" type="String" default=""/>
+
+    <c:InputTextArea val="{!v.Opportunity.General_Feedback_FO__c}" maxLen="10000" aura:id="General_Feedback_FO" label="General Feedback"/>
+    <c:InputPicklist val="{!v.Opportunity.Rate_The_Esthetics_Of_Your_Cases__c}" aura:id="Rate_The_Esthetics_Of_Your_Cases" label="Rate The Esthetics Of Your Cases" Sobject="Opportunity" SoField="Rate_The_Esthetics_Of_Your_Cases__c"/>
+    <c:InputText val="{!v.Opportunity.Esthetics_Feedback__c}" maxLen="255" aura:id="Esthetics_Feedback" label="Esthetics Feedback"/>
+    <c:InputPicklist val="{!v.Opportunity.Rate_The_Fit_Of_The_Crowns__c}" aura:id="Rate_The_Fit_Of_The_Crowns" label="Rate The Fit Of The Crowns" Sobject="Opportunity" SoField="Rate_The_Fit_Of_The_Crowns__c"/>
+    <c:InputText val="{!v.Opportunity.Fit_Feedback__c}" maxLen="255" aura:id="Fit_Feedback" label="Fit Feedback"/>
+    <c:InputPicklist val="{!v.Opportunity.Rate_The_Turnaround_Time__c}" aura:id="Rate_The_Turnaround_Time" label="Rate The Turnaround Time" Sobject="Opportunity" SoField="Rate_The_Turnaround_Time__c"/>
+    <c:InputText val="{!v.Opportunity.Turnaround_Time__c}" maxLen="255" aura:id="Turnaround_Time" label="Turnaround Time"/>
+    <c:InputPicklist val="{!v.Opportunity.Rate_The_Customer_Support_You_Received__c}" aura:id="Rate_The_Customer_Support_You_Received" label="Rate The Customer Support You Received" Sobject="Opportunity" SoField="Rate_The_Customer_Support_You_Received__c"/>
+    <c:InputText val="{!v.Opportunity.Customer_Support__c}" maxLen="255" aura:id="Customer_Support" label="Customer Support"/>
+    <c:InputText val="{!v.Opportunity.Training_Sessions_Guidance_For_Success__c}" maxLen="255" aura:id="Training_Sessions_Guidance_For_Success" label="Training Sessions Guidance For Success"/>
+
+
+    <button class="slds-button slds-button_brand" onclick="{!c.saveButton}">Save</button>
+</aura:component>

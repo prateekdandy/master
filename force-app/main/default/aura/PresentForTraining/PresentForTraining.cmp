@@ -1,0 +1,67 @@
+<aura:component controller="ContactListController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="oSelectedRecordEvent" event="c:SelectedObjectRecordEvent" action="{!c.handleComponentEvent}"/>
+    <aura:attribute name="oppRecordId" type="String"/>
+    <aura:attribute name="fileShares" type="List" default="[]"/>
+    <aura:attribute name="fileShareIncremental" type="Integer" default="0"/>
+    <aura:attribute name="fileShareId" type="String"/>
+    <aura:attribute name="contactOption" type="Contact" default="{}"/>
+    <aura:attribute name="listOfSearchRecords" type="List"/>
+    <aura:attribute name="Message" type="String" default=""/>
+    <aura:attribute name="contactToAdd" type="Boolean" default="false"/>
+    <aura:attribute name="contactLastName" type="String"/>
+    <aura:attribute name="contactFirstName" type="String"/>
+    <aura:attribute name="contactFullName" type="String"/>
+    <aura:attribute name="activateSaveButton" type="Boolean" default="true"/>
+    <aura:attribute name="spinner" type="Boolean" default="false"/>
+
+    <aura:if isTrue="{!v.spinner}">
+        <lightning:spinner alternativeText="Loading" size="medium"/>
+    </aura:if>
+    <div aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close">
+        <aura:iteration items="{!v.fileShares}" var="fileShare">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_3-of-14" aura:id="lastName" style="padding-right:10px;">
+                    <lightning:input name="{!fileShare.id}" label="Last Name" title="lastName" onchange="{!c.searchContactInfoForLastName}" value="{!fileShare.lastName}" disabled="{!fileShare.isSaved == 'true'}"/>
+                </div>
+                <div class="slds-col slds-size_3-of-14" style="padding-left:10px;">
+                    <lightning:input label="First Name" name="{!fileShare.id}" onblur="{!c.addNewPersonForTraining}" onchange="{!c.searchContactInfoForFirstName}" value="{!fileShare.firstName}" disabled="{!fileShare.isSaved == 'true'}"/>
+                </div>
+                <aura:if isTrue="{!fileShare.ableToAdd == 'true'}">
+                    <div class="slds-col slds-size_3-of-14" style="padding-left:10px; padding-top:20px;" onclick="{!c.addNewContact}">
+                        <lightning:icon iconName="action:new" size="x-small" title="Add new contact"/>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.fileShares.length>1}">
+                    <div class="slds-col slds-size_3-of-14" style="padding-left:10px; padding-top:20px;" onclick="{!c.removeShareHandler}"
+                         data-idtoremove="{!fileShare.id}" data-index="{!ivar}">
+                        <lightning:icon iconName="action:close" size="x-small" title="Remove"/>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.fileShares.length == 1}">
+                    <div class="slds-col slds-size_3-of-14" style="padding-left:10px; padding-top:20px;" onclick="{!c.addMoreShareHandler}">
+                        <lightning:icon iconName="action:add_file" size="x-small" title="Add new form"/>
+                    </div>
+                </aura:if>
+                <div class="slds-col slds-size_2-of-14" style="padding-left:20px; padding-top:20px;">
+                    <aura:if isTrue="{!fileShare.recordToInsert == 'false'}">
+                        <lightning:icon iconName="action:info" title="Contact already exists in the system" size="x-small"/>
+                    </aura:if>
+                    <aura:if isTrue="{!fileShare.recordToInsert == 'true'}">
+                        <lightning:icon iconName="action:approval" title="Contact will be add to the System" size="x-small"/>
+                    </aura:if>
+                </div>
+            </div>
+        </aura:iteration>
+        <ul style="min-height:40px;margin-top:0px !important" class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid slds-lookup__menu slds" role="listbox">
+            <center>{!v.Message}</center>
+            <aura:iteration items="{!v.listOfSearchRecords}" var="singleRec">
+                <c:CustomLookUpResult oRecord="{!singleRec}"/>
+            </aura:iteration>
+        </ul>
+        <br/>
+        <div class="slds-align_absolute-center">
+            <lightning:button variant="brand" label="Save" title="Send Updated Questions" disabled="{!v.activateSaveButton}" onclick="{!c.saveContacts}"/>
+        </div>
+    </div>
+</aura:component>

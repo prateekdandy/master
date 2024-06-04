@@ -1,0 +1,12 @@
+.THIS{
+    clear: both;
+}
+.THIS label {
+    margin-top: 1%;
+}
+.THIS .slds-required{
+    display: none;
+}
+.THIS .required{
+    color: red;
+}

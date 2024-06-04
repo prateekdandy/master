@@ -1,0 +1,133 @@
+<template>
+    <lightning-card>
+  <div class="slds-card__header">
+      <div class="slds-grid slds-grid_align-end">
+        <lightning-button label="Add Products" class="slds-button_neutral"></lightning-button>
+        <lightning-button label="Edit Products" class="slds-button_neutral"></lightning-button>
+    </div>
+  </div>
+  <template if:true={isLoading}>
+    <lightning-spinner variant="brand" size="small">
+    </lightning-spinner>
+  </template>
+  <div class="slds-card__body"> 
+    <div class="slds-section">
+    <h2 class="slds-card__header-title">Monthly Minimum</h2><b></b> 
+</div> 
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+              <th scope="col">Product</th>
+              <th scope="col">Sales Price</th>
+              <th scope="col">Discount(%)</th>
+              <th scope="col">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={quoteLineItems} for:item="lineItem">
+                <tr key={lineItem.id}>
+                    <td scope="row">{lineItem.product}</td>
+                    <td scope="row">{lineItem.salesPrice}</td>
+                        <td scope="row">{lineItem.discount}</td>
+                        <td scope="row">{lineItem.totalPrice}</td>                        
+                </tr>
+            </template>
+          </tbody>
+    </table>
+
+    <div class="slds-section">
+        <h2 class="slds-card__header-title">Fees</h2><b></b>
+    </div> 
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+              <th scope="col">Product</th>
+              <th scope="col">Sales Price</th>
+              <th scope="col">Discount(%)</th>
+              <th scope="col">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={fees} for:item="fee">
+                <tr key={fee.id}>
+                    <td scope="row">{fee.product}</td>
+                    <td scope="row">{fee.salesPrice}</td>
+                        <td scope="row">{fee.discount}</td>
+                        <td scope="row">{fee.totalPrice}</td> 
+                </tr>
+                </template>
+          </tbody>
+    </table>
+    <div class="slds-section">
+        <h2 class="slds-card__header-title">Equipment</h2><b></b>
+    </div> 
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+              <th scope="col">Product</th>
+              <th scope="col">Sales Price</th>
+              <th scope="col">Discount(%)</th>
+              <th scope="col">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={equipments} for:item="equipment">
+                <tr key={equipment.id}>
+                    <td scope="row">{equipment.product}</td>
+                    <td scope="row">{equipment.salesPrice}</td>
+                        <td scope="row">{equipment.discount}</td>
+                        <td scope="row">{equipment.totalPrice}</td> 
+                </tr>
+                </template>
+          </tbody>
+    </table>
+    <div class="slds-section">
+        <h2 class="slds-card__header-title">Core Products</h2><b></b>
+    </div> 
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+              <th scope="col">Product</th>
+              <th scope="col">Sales Price</th>
+              <th scope="col">Discount(%)</th>
+              <th scope="col">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={coreProducts} for:item="coreProduct">
+                <tr key={coreProduct.id}>
+                    <td scope="row">{coreProduct.product}</td>
+                    <td scope="row">{coreProduct.salesPrice}</td>
+                        <td scope="row">{coreProduct.discount}</td>
+                        <td scope="row">{coreProduct.totalPrice}</td> 
+                </tr>
+                </template>
+          </tbody>
+    </table>
+    <div class="slds-section">
+        <h2 class="slds-card__header-title">Detail Products</h2><b></b>
+    </div> 
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+              <th scope="col">Product</th>
+              <th scope="col">Sales Price</th>
+              <th scope="col">Discount(%)</th>
+              <th scope="col">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={detailProducts} for:item="detailProduct">
+                <tr key={detailProduct.id}>
+                    <td scope="row">{detailProduct.product}</td>
+                    <td scope="row">{detailProduct.salesPrice}</td>
+                        <td scope="row">{detailProduct.discount}</td>
+                        <td scope="row">{detailProduct.totalPrice}</td> 
+                </tr>
+                </template>
+          </tbody>
+    </table>
+                      </div>
+                      
+                    </lightning-card>
+                </template>

@@ -1,0 +1,18 @@
+<aura:component controller="PostTrainingQuestions" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:attribute name="Opportunity" type="Opportunity" default="{}"/>
+    <aura:attribute name="recordId" type="String" default=""/>
+
+    <c:InputTextArea val="{!v.Opportunity.General_Feedback__c}" maxLen="10000" aura:id="General_Feedback" label="General Feedback"/>
+    <c:InputPicklist val="{!v.Opportunity.Comfort_Level_With_The_Scanner__c}" aura:id="Comfort_Level_With_The_Scanner" label="What is your comfort level with the scanner?" Sobject="Opportunity" SoField="Comfort_Level_With_The_Scanner__c"/>
+    <c:InputText val="{!v.Opportunity.Scanning_More_Difficult_Than_Others__c}" maxLen="255" aura:id="Scanning_More_Difficult_Than_Others" label="Are you finding scanning certain cases more difficult than others? "/>
+    <c:InputText val="{!v.Opportunity.Time_To_Complete_A_Full_Scan__c}" maxLen="255" aura:id="Time_To_Complete_A_Full_Scan" label="How long is it currently taking you to complete a full scan for a single unit crown?"/>
+    <c:InputText val="{!v.Opportunity.Assistants_Assisting_With_Scans__c}" maxLen="255" aura:id="Assistants_Assisting_With_Scans" label="Are the assistants assisting with your scans? Pre-prep or all scans? "/>
+    <c:InputText val="{!v.Opportunity.Schedule_A_1_1_Session_With_A_Trainer__c}" maxLen="255" aura:id="Schedule_A_1_1_Session_With_A_Trainer" label="Would you like us to schedule a 1:1 session with a trainer during their office hours? Or have someone from Dandy view a live scan?"/>
+    <c:InputPicklist val="{!v.Opportunity.Am_Is_This_Account_At_Risk__c}" aura:id="Am_Is_This_Account_At_Risk" label="AM, Is this account at risk?" Sobject="Opportunity" SoField="Am_Is_This_Account_At_Risk__c"/>
+
+
+    <button class="slds-button slds-button_brand" onclick="{!c.saveButton}">Save</button>
+</aura:component>

@@ -1,0 +1,39 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
+                controller="HierarchyAssetsController">
+    <aura:attribute name="recordId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="AllAccounts" type="Account[]"/>
+
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+        <tr class="slds-line-height_reset">
+            <th class="" scope="col">
+                <div class="slds-truncate" title="Opportunity Name">Account Name</div>
+            </th>
+            <th class="" scope="col">
+                <div class="slds-truncate" title="Account Name">Asset Name</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <aura:iteration items="{!v.AllAccounts}" var="acc">
+            <aura:iteration items="{!acc.Assets}" var="asset" indexVar="index">
+                <tr class="slds-hint-parent">
+                    <td>
+                        <div class="slds-truncate">{!acc.Name}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate"><a onclick="{!c.navigateToRecord}" style="width:100%;" data-id="{!asset.Id}" data-index="{!index}">{!asset.Name}</a></div>
+                    </td>
+
+                </tr>
+
+            </aura:iteration>
+        </aura:iteration>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</aura:component>

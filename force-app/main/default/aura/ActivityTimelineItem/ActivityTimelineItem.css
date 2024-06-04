@@ -1,0 +1,7 @@
+.THIS button:focus{
+    outline: 0;
+}
+
+.THIS *:focus{
+    outline: 0 !important;
+}

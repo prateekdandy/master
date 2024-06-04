@@ -1,0 +1,24 @@
+<aura:component>
+    <aura:attribute name="type" type="string" default="input"/>
+    <aura:attribute name="label" type="string"/>
+    <aura:attribute name="field" type="string" default=""/>
+    <aura:attribute name="maxLen" type="string" default="254"/>
+    <aura:attribute name="formatter" type="string" default=""/>
+    <aura:attribute name="placeholder" type="string" default=""/>
+    <aura:attribute name="isRequired" type="Boolean" default="false"/>
+    <aura:attribute name="max" type="string" default=""/>
+    <aura:attribute name="val" type="string" default=""/>
+
+    <div class="slds-form-element slds-form-element_horizontal">
+        <label class="slds-form-element__label " for="horizontal-input-id-01">
+        {!v.label}
+            <aura:if isTrue="{!v.isRequired}">
+                <span class="required"> * </span>
+            </aura:if>
+        </label>
+
+        <div class="slds-form-element__control">
+            <lightning:input value="{!v.val}" max="{!v.max}"  maxlength="{!v.maxLen}" type="{!v.type}" aura:id="vldfld" formatter="{!v.formatter}" name="{!v.label}" required="{!v.isRequired}" placeholder="{!v.placeholder}"/>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="oppRecordId" type="String"/>
+    <lightning:accordion class="acordeon-style" aura:id="accordionContactListBundle" activeSectionName="otherNamesAndSpecialties">
+        <lightning:accordionSection name="otherNamesAndSpecialties" label="Other Dentists Names and Specialties">
+            <c:OtherNameAndSpecialties oppRecordId="{!v.oppRecordId}"/>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="staffNamesAndRoles" label="Staff Names and Roles">
+            <c:StaffNamesAndRoles oppRecordId="{!v.oppRecordId}"/>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="whoWillBePresentForTraining" label="Who Will Be Present For Training">
+            <c:PresentForTraining oppRecordId="{!v.oppRecordId}"/>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="attendeesOnCall" label="Attendees On Call">
+            <c:AttendeesOnCall oppRecordId="{!v.oppRecordId}"/>
+        </lightning:accordionSection>
+    </lightning:accordion>
+</aura:component>

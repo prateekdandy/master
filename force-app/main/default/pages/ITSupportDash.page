@@ -1,0 +1,3 @@
+<apex:page standardController="Account">
+    <apex:iframe src="https://chartio.com/dandy-0/operations-doctor-ops-itsupport-dashboard/?embed=1" width="100%" height="600px" id="account_app_usage" scrolling="false"/>
+</apex:page>

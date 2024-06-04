@@ -1,0 +1,11 @@
+.THIS {
+}
+
+.THIS .white svg{
+    fill: white !important;
+    color: white !important;
+}
+
+.THIS .marginicon svg{
+    margin: 4px;
+}

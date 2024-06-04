@@ -1,0 +1,3 @@
+<apex:page standardController="Account">
+    <apex:iframe src="https://orthly.tryretool.com/embedded/public/760e177d-0ce4-42cb-9818-c21826c2e501" width="100%" height="600px" id="account_app_usage" scrolling="false"/>
+</apex:page>

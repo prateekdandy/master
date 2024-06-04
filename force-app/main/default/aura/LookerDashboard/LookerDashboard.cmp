@@ -1,0 +1,47 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute type="String" name="dashboardURL" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="accountRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+    <aura:attribute name="showDashboard" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:if isTrue="{! v.showSpinner }">
+        <lightning:spinner alternativeText="Loading" />
+    </aura:if>
+    <aura:if isTrue="{!v.showDashboard}">
+        <lightning:card iconName="standard:dashboard" title="Looker Dashoboard">
+            <div>
+                <iframe 
+                        width="1200" 
+                        height="600" 
+                        style="border: 1px solid" 
+                        src="{!v.dashboardURL}" 
+                        sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin"/>
+            </div>
+        </lightning:card>
+        
+        <aura:set attribute="else">
+            <div>
+                <lightning:card iconName="action:edit" title="Enter Shipping Code to see Looker Dashboard">
+                    <div>
+                        <lightning:input aura:id="accountField" type="number" label="Shipping Pin Code" value="{!v.accountRecord.ShippingPostalCode}" required="true"/>
+                        <br/>
+                        <lightning:button label="Save Account" variant="brand" onclick="{!c.handleSaveRecord}" />
+                    </div>
+                </lightning:card>
+            </div>
+        </aura:set>
+    </aura:if> 
+    
+    
+    
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      fields="Name,ShippingPostalCode"
+                      targetFields="{!v.accountRecord}"
+                      targetError="{!v.recordLoadError}"
+                      recordUpdated="{!c.handleRecordUpdated}"
+                      mode="EDIT"
+                      />
+    
+</aura:component>

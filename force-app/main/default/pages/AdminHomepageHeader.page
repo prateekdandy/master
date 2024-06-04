@@ -1,0 +1,8 @@
+<apex:page controller="AdminHomepage">
+    <apex:outputLabel value="
+    <p>{!PageAlert}</p>
+    <p>Limit Review: {!CheckLimits}</p>
+    <p>Total PandaDocs Last Week: {!CheckDocs}</p>
+    <p>Frozen Users: {!CheckUsers} </p>
+    " escape="false" />
+</apex:page>

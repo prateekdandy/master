@@ -1,0 +1,92 @@
+<template>
+    <lightning-quick-action-panel header="Search Google Place">
+        <template if:true={showSpinner}>
+            <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+        </template>
+        <template if:true={showSearchPlace}>
+            <template if:true={isAccountObject}>
+                <lightning-record-edit-form object-api-name={objectApiName} record-id={recordId}>
+                    <lightning-layout>
+                        <lightning-layout-item size="12">
+                            <p>
+                                <label for="nameField">Enter Text To Search</label>
+                                <lightning-input-field id="nameField" field-name="Name" class="searchText" value={searchValue}
+                                    variant="label-hidden"></lightning-input-field>
+                            </p>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-record-edit-form>
+            </template>
+            <template if:true={isOnboardingObject}>
+                <lightning-layout>
+                    <lightning-layout-item size="12">
+                        <p>
+                            <lightning-input type="text" label="Enter Text To Search" class="searchText" value={searchValue}></lightning-input>    
+                        </p>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-record-edit-form class="displayNone" object-api-name={objectApiName} record-id={recordId} onload={handleOnBoardingOnLoad}>
+                    <lightning-input-field class="slds-hidden" field-name="Account_Name_Formula__c" ></lightning-input-field>
+                </lightning-record-edit-form>
+            </template>
+        </template>
+        <template if:true={showPlaceResults}>
+            <lightning-datatable key-field="placeId" data={data} columns={columns} onrowselection={getSelectedPlaceId} max-row-selection="1">
+            </lightning-datatable>
+        </template>
+        <template if:true={showDetails}>
+            <p>
+                <b>Name: </b> {openingHours.placeDetails.name}
+            </p>
+            <p>
+                <b>URL: </b> <lightning-formatted-url value={openingHours.placeDetails.url} label={openingHours.placeDetails.url} target="_blank" ></lightning-formatted-url>
+            </p>
+            <p>
+                <b>Website: </b> <lightning-formatted-url value={openingHours.placeDetails.website} label={openingHours.placeDetails.website} target="_blank" ></lightning-formatted-url>
+            </p>
+            <p>
+                <b>UTC Off Set: </b> {openingHours.placeDetails.utcOffSet}
+            </p>
+            <p>
+                <b>Address: </b> {openingHours.placeDetails.formatted_address}
+            </p>
+            <p>
+                <b>Business Status: </b> {openingHours.placeDetails.business_status}
+            </p>
+            <p>
+                <b>Phone Number: </b> <lightning-formatted-phone value={openingHours.placeDetails.formatted_phone_number} ></lightning-formatted-phone>
+            </p>
+            <p>
+                <b>International Phone Number: </b> <lightning-formatted-phone value={openingHours.placeDetails.international_phone_number} ></lightning-formatted-phone>
+            </p>
+            <b>Opening Hours: </b> 
+            <ul>
+                <template for:each={openingHours.placeDetails.opening_hours.weekday_text} for:item="weekday">
+                    <li key={weekday}>{weekday}</li>
+                </template>
+            </ul>
+        
+            
+        </template>
+        <div slot="footer">
+            <lightning-button label="Cancel" type="cancel" onclick={handleCancel}></lightning-button>
+            &nbsp;&nbsp;
+            <template if:true={showSearchPlace}>
+                <lightning-button variant="brand" type="submit" label="Search Place" onclick={handleSubmitButtonClick}>
+                </lightning-button>
+            </template>
+            <template if:true={showPlaceResults}>
+                <lightning-button label="Go Back" type="cancel" onclick={goToSearchScreen}></lightning-button>
+                &nbsp;&nbsp;
+                <lightning-button variant="brand" type="submit" label="Get Details" onclick={fetchOpeningHours}>
+                </lightning-button>
+            </template>
+            <template if:true={showDetails}>
+                <lightning-button label="Go Back" type="cancel" onclick={goToSearchResultScreen}></lightning-button>
+                &nbsp;&nbsp;
+                <lightning-button variant="brand" type="submit" label="Save Opening Hours" onclick={saveOpeningHours}>
+                </lightning-button>
+            </template>
+        </div>
+    </lightning-quick-action-panel>
+</template>

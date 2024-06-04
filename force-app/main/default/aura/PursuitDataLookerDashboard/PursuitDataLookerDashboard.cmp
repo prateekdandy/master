@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute type="String" name="dashboardURL" />
+    <lightning:card iconName="standard:dashboard" title="Pursuit Data">
+            <div>
+                <iframe 
+                        width="1200" 
+                        height="600" 
+                        style="border: 1px solid" 
+                        src="{!v.dashboardURL}" 
+                        sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin"/>
+            </div>
+        </lightning:card>
+</aura:component>

@@ -1,0 +1,3 @@
+<apex:page controller="UsersFrozen">
+ <p> Total Number of Frozen Users : {!FURCount} ... {!FURList} </p>
+</apex:page>

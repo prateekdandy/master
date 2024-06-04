@@ -1,0 +1,27 @@
+<aura:component controller="PicklistSelectController">
+    <aura:attribute name="type" type="string" default="combobox"/>
+    <aura:attribute name="label" type="string"/>
+    <aura:attribute name="field" type="string" default=""/>
+    <aura:attribute name="Soptions" type="List" default="[]"/>
+    <aura:attribute name="Sobject" type="string"/>
+    <aura:attribute name="SoField" type="string"/>
+    <aura:attribute name="isRequired" type="Boolean" default="false"/>
+    <aura:attribute name="helpText" type="String" default=""/>
+    <aura:attribute name="val" type="String" default=""/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-form-element slds-form-element_horizontal">
+        <label class="slds-form-element__label" for="horizontal-input-id-01">
+        {!v.label}
+            <aura:if isTrue="{!v.isRequired}">
+                <span class="required"> * </span>
+            </aura:if>
+            <aura:if  isTrue="{!v.helpText != ''}">
+                <lightning:helptext iconName="utility:info" content="{!v.helpText}" />
+            </aura:if>
+        </label>
+
+        <div class="slds-form-element__control">
+            <lightning:combobox value="{!v.val}" aura:id="combobox" required="{!v.isRequired}" variant="label-hidden" placeholder="Select Option" options="{!v.Soptions}" onchange="{! c.handleChange }"/>
+        </div>
+    </div>
+</aura:component>

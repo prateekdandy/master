@@ -1,0 +1,78 @@
+<aura:component>
+    <aura:attribute name="expanded" type="Boolean" default="false"/>
+    <aura:attribute name="mainIcon" type="String" default="utility:task"/>
+    <aura:attribute name="content" type="String"/>
+    <aura:attribute name="timeLineBody" type="String"/>
+    <aura:attribute name="date" type="String"/>
+    <li>
+        <div class="slds-timeline__item_expandable slds-timeline__item_task">
+            <span class="slds-assistive-text">task</span>
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <button class="slds-button slds-button_icon"
+                            aria-controls="task-item-base" aria-expanded="true"  onclick="{!c.expand}">
+                             <span class="slds-button__icon">
+                                 <aura:if isTrue="{!v.expanded}">
+                                     <lightning:icon iconName="utility:chevrondown" size="x-small"/>
+                                     <aura:set attribute="else">
+                                        <lightning:icon iconName="utility:chevronright" size="x-small"/>
+                                     </aura:set>
+                                 </aura:if>
+
+                             </span>
+                        <span class="slds-assistive-text">Toggle details</span>
+                    </button>
+                    <div class="slds-icon_container slds-icon-standard-task slds-timeline__icon" title="task">
+                            <span class="slds-icon slds-icon_small" aria-hidden="true">
+                                <lightning:icon class="white marginicon" iconName="{!v.mainIcon}" size="x-small"/>
+                            </span>
+                    </div>
+                </div>
+                <div class="slds-media__body">
+                    <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                            <div class="slds-checkbox">
+                                <input type="checkbox" name="options" id="checkbox-unique-id-3"
+                                       value="checkbox-unique-id-3"/>
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-3">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label slds-assistive-text">Mark Review</span>
+                                </label>
+                            </div>
+                            <h3 class="slds-truncate" >
+                                <a href="javascript:void(0);">
+                                    <strong>{!v.content}</strong>
+                                </a>
+                            </h3>
+                            <div class="slds-no-flex">
+<span class="slds-icon_container slds-icon-utility-rotate" title="Recurring Task">
+    <span class="slds-button__icon slds-timeline__details-action-icon">
+
+    </span>
+    <span class="slds-icon slds-icon_xx-small slds-icon-text-default slds-m-left_x-small" aria-hidden="true">
+    <lightning:icon iconName="utility:rotate" size="x-small"/>
+    </span>
+<span class="slds-assistive-text">Recurring Task</span>
+</span>
+                            </div>
+                        </div>
+                        <div class="slds-timeline__actions slds-timeline__actions_inline">
+                            <p class="slds-timeline__date">{!v.date}</p>
+                        </div>
+                    </div>
+                    <p class="slds-m-horizontal_xx-small">
+                        <aura:unescapedHtml value="{!v.timeLineBody}"/>
+                    </p>
+                    <aura:if isTrue="{!v.expanded}">
+                    <article
+                            class="slds-box slds-timeline__item_details slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small"
+                            id="task-item-base" style="visibility: visible; opacity: initial; height: auto;padding: 16px;">
+
+
+                    </article>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+    </li>
+</aura:component>

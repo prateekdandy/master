@@ -1,0 +1,20 @@
+.THIS{
+    clear: both;
+}
+
+.THIS label {
+    margin-top: 0%;
+}
+
+.THIS .slds-required{
+    display: none;
+}
+
+.THIS .slds-form-element__icon{
+    padding: 0 !important;
+}
+
+.THIS lightning-helptext{
+    display: block;
+    float: right;
+}
